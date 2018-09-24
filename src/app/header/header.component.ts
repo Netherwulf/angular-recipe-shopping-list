@@ -7,20 +7,10 @@ import {Component, EventEmitter, Output} from '@angular/core';
 })
 export class HeaderComponent {
 
-  @Output() visibilityChange = new EventEmitter<{recipesVisible: boolean, shoppingListVisible: boolean}>();
+  @Output() featureSelected = new EventEmitter<string>();
 
-  onShowRecipes() {
-    this.visibilityChange.emit({
-      recipesVisible: true,
-      shoppingListVisible: false
-    });
-  }
-
-  onShowShoppingList() {
-    this.visibilityChange.emit({
-      recipesVisible: false,
-      shoppingListVisible: true
-    });
+  onSelect(feature: string) {
+    this.featureSelected.emit(feature);
   }
 
 }
