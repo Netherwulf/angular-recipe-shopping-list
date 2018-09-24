@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -6,5 +6,21 @@ import {Component} from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+
+  @Output() visibilityChange = new EventEmitter<{recipesVisible: boolean, shoppingListVisible: boolean}>();
+
+  onShowRecipes() {
+    this.visibilityChange.emit({
+      recipesVisible: true,
+      shoppingListVisible: false
+    });
+  }
+
+  onShowShoppingList() {
+    this.visibilityChange.emit({
+      recipesVisible: false,
+      shoppingListVisible: true
+    });
+  }
 
 }

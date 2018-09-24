@@ -6,4 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  recipesVisible = true;
+  shoppingListVisible = true;
+
+  onVisibilityChanged(visibilityData: {recipesVisible: boolean, shoppingListVisible: boolean}) {
+    this.recipesVisible = visibilityData.recipesVisible;
+    this.shoppingListVisible = visibilityData.shoppingListVisible;
+  }
 }
