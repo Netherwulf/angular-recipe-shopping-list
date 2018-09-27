@@ -15,10 +15,10 @@ export class ShoppingListComponent implements OnInit {
 
   ngOnInit() {
     this.ingredients = this.shoppingListService.getIngredients();
-    this.shoppingListService.ingredientAdded.subscribe(
-      (ingredient: Ingredient) => {
-        this.ingredients.push(ingredient);
-        this.shoppingListService.addIngredient(ingredient);
+
+    this.shoppingListService.ingredientsChanged.subscribe(
+      (ingredients: Ingredient[]) => {
+        this.ingredients = ingredients;
       }
     );
   }
