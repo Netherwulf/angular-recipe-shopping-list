@@ -10,7 +10,7 @@ export class RecipeService {
 
   private recipes: Recipe[] = [
     new Recipe(
-      '0',
+      0,
       'Tasty Schnitzel',
       'A super-tasty Schnitzel - just awesome!',
       'https://toriavey.com/images/2011/02/IMG_1544.jpg',
@@ -19,7 +19,7 @@ export class RecipeService {
         new Ingredient('French Fries', 20)
       ]),
     new Recipe(
-      '1',
+      1,
       'Big Fat Burger',
       'What else you need to say?',
       'https://st2.depositphotos.com/1004118/11101/i/950/depositphotos_111014890-stock-photo-big-fat-burger.jpg',
@@ -35,12 +35,8 @@ export class RecipeService {
     return this.recipes.slice();
   }
 
-  getRecipe(id: string) {
-    return this.recipes.find(
-      (recipe) => {
-        return recipe.id === id;
-      }
-    );
+  getRecipe(index: number) {
+    return this.recipes.slice()[index];
   }
 
   addIngredientsToShoppingList(ingredients: Ingredient[]) {
