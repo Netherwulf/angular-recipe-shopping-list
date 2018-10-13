@@ -14,7 +14,7 @@ export class HeaderComponent {
   constructor(private router: Router,
               private route: ActivatedRoute,
               private dataStoreageService: DataStorageService,
-              private authService: AuthService) {}
+              public authService: AuthService) {}
 
   onSelectShoppingList() {
     this.router.navigate(['/shopping-list'], {relativeTo: this.route});
