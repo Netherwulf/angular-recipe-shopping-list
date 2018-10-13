@@ -1,9 +1,11 @@
 import {Injectable} from '@angular/core';
 import {Subject} from 'rxjs';
+import {Http} from '@angular/http';
 
 import {Recipe} from './recipe.model';
 import {Ingredient} from '../shared/ingredient.model';
 import {ShoppingListService} from '../shopping-list/shopping-list.service';
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class RecipeService {
@@ -28,7 +30,8 @@ export class RecipeService {
       ])
   ];
 
-  constructor(private shoppingListService: ShoppingListService) {
+  constructor(private shoppingListService: ShoppingListService,
+              private http: Http) {
   }
 
   getRecipes() {
@@ -57,4 +60,10 @@ export class RecipeService {
     this.recipes.splice(index, 1);
     this.recipesChanged.next(this.recipes.slice());
   }
+
+  setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes;
+    this.recipesChanged.next(this.recipes.slice());
+  }
+
 }

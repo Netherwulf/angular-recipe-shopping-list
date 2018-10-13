@@ -1,5 +1,8 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
+import {RecipeService} from '../recipes/recipe.service';
+import {DataStorageService} from '../shared/data-storage.service';
+import {Recipe} from '../recipes/recipe.model';
 
 @Component({
   selector: 'app-header',
@@ -8,10 +11,26 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class HeaderComponent {
   constructor(private router: Router,
-              private route: ActivatedRoute) {}
+              private route: ActivatedRoute,
+              private dataStoreageService: DataStorageService) {}
 
   onSelectShoppingList() {
     this.router.navigate(['/shopping-list'], {relativeTo: this.route});
   }
 
+  onRecipeSave() {
+    this.dataStoreageService.storeRecipes()
+      .subscribe(
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }
+
+  onRecipesFetch() {
+    this.dataStoreageService.fetchRecipes();
+  }
 }
